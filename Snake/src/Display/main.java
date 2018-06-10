@@ -46,11 +46,13 @@ public class main implements Runnable {
 	}
 	
 	void update() {
-		
+		// panel
+			frame.panel.update();
 	}
 	
 	void render() {
-		
+		// panel
+			frame.panel.repaint();
 	}
 
 }

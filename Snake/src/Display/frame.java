@@ -4,8 +4,9 @@ import javax.swing.JFrame;
 
 public class frame extends JFrame {
 
+	public gamepanel panel = new gamepanel();
+	
 	frame(){
-		
 		// setting characteristics of frame
 				setTitle("Snake");
 				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -13,7 +14,7 @@ public class frame extends JFrame {
 				setResizable(false);
 				setUndecorated(true);
 				setLocationRelativeTo(null);
-			//add(new gamepanel());
+				add(panel);
 				setVisible(true);
 			
 		
