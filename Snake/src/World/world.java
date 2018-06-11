@@ -3,7 +3,9 @@ package World;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import Gameobjects.snake;
 import Items.apple;
+import TEXTURES.TEXTURES;
 
 public class world extends state {
 
@@ -13,6 +15,9 @@ public class world extends state {
 	
 	// items
 		apple a;
+	
+	// entities 
+		snake s = new snake(0, 0, 32, 32, 32, TEXTURES.apple);
 	
 	public world() {
 		
@@ -24,7 +29,7 @@ public class world extends state {
 				}
 			}
 			
-			// ********SET IT IN APPLE AS A METHOD
+			// apple created and get a random position
 			int bn = (int) (Math.random() * notusedbox.size()); 
 			boxes b = notusedbox.get(bn);
 			a = new apple(b.getX() * 32, b.getY() * 32, 32);
@@ -43,6 +48,7 @@ public class world extends state {
 	}
 	@Override
 	public void update() {
+		
 		// boxes
 			for(int x = 0; x < 800/32; x++) {
 				for(int y = 0; y < 600/32; y++) {
@@ -50,12 +56,18 @@ public class world extends state {
 				}
 			}
 			
-			setAppleANewPos();
-		}
-
+		// entities
+			s.update();
+			
+	}
+	
 	@Override
 	public void render(Graphics2D g) {
-		a.render(g);
+		// items
+			a.render(g);
+			
+		// entities
+			s.render(g);
 	}
 	
 }

@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import Managers.keymanager;
 import World.manager;
 import World.world;
 
@@ -17,6 +18,9 @@ public class gamepanel extends JPanel {
 	
 	public gamepanel() {
 
+		setFocusable(true);
+		requestFocus();
+		addKeyListener(new keymanager());
 		m.states.add(new world());
 		
 	}
@@ -27,7 +31,6 @@ public class gamepanel extends JPanel {
 	
 	private void render(Graphics2D g) {
 		
-		g.fillRect(0, 0, 50, 50);
 		m.render(g);
 		
 	}
