@@ -5,10 +5,14 @@ import java.util.ArrayList;
 
 import Gameobjects.snake;
 import Items.apple;
+import Loaders.musicloader;
 import TEXTURES.TEXTURES;
 
 public class world extends state {
 
+	// sounds and musics
+		musicloader getAppleSound = new musicloader();
+	
 	// boxes
 		boxes[][] boxes = new boxes[800/32][600/32];
 		ArrayList<boxes> notusedbox = new ArrayList<boxes>();
@@ -20,6 +24,10 @@ public class world extends state {
 		public snake s = new snake(0, 0, 32, 32, 32, TEXTURES.apple);
 	
 	public world() {
+		
+		// sounds and musics
+			getAppleSound.load("sounds/sound.wav");
+			
 		
 		// boxes
 			for(int x = 0; x < 800/32; x++) {
@@ -53,6 +61,7 @@ public class world extends state {
 		a.setX(b.getX() * 32);
 		a.setY(b.getY() * 32);
 		notusedbox.remove(bn);
+		getAppleSound.play();
 	}
 	@Override
 	public void update() {
