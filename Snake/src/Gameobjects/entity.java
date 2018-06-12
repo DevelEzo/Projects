@@ -3,6 +3,7 @@ package Gameobjects;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+
 public class entity extends objects {
 
 	// movement
@@ -18,7 +19,6 @@ public class entity extends objects {
 	}
 	
 	public void update() {
-		
 	}
 	
 	public void move() {	

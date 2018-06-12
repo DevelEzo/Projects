@@ -13,7 +13,6 @@ public class manager extends state{
 	public void update() {
 		// state
 			states.get(state).update();
-		
 	}
 
 	@Override

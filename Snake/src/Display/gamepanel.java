@@ -9,19 +9,24 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import Managers.keymanager;
+import World.loadscreen;
 import World.manager;
 import World.world;
 
 public class gamepanel extends JPanel {
 
-	manager m = new manager();
+	// manager
+		public manager m = new manager();
 	
 	public gamepanel() {
 
 		setFocusable(true);
 		requestFocus();
 		addKeyListener(new keymanager());
-		m.states.add(new world());
+		
+		// manager
+			m.states.add(new world());
+			m.states.add(new loadscreen());
 		
 	}
 	

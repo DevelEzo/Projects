@@ -14,10 +14,10 @@ public class world extends state {
 		ArrayList<boxes> notusedbox = new ArrayList<boxes>();
 	
 	// items
-		apple a;
+		public apple a;
 	
 	// entities 
-		snake s = new snake(0, 0, 32, 32, 32, TEXTURES.apple);
+		public snake s = new snake(0, 0, 32, 32, 32, TEXTURES.apple);
 	
 	public world() {
 		
@@ -30,13 +30,21 @@ public class world extends state {
 			}
 			
 			// apple created and get a random position
-			int bn = (int) (Math.random() * notusedbox.size()); 
-			boxes b = notusedbox.get(bn);
-			a = new apple(b.getX() * 32, b.getY() * 32, 32);
-			notusedbox.remove(bn);
+				int bn = (int) (Math.random() * notusedbox.size()); 
+				boxes b = notusedbox.get(bn);
+				a = new apple(b.getX() * 32, b.getY() * 32, 32);
+				notusedbox.remove(bn);
 			
 			
 	
+	}
+	
+	private boolean isPlayerEatApple() {
+		if(a.getBox().intersects(s.getBox())) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 	private void setAppleANewPos() {
@@ -58,7 +66,12 @@ public class world extends state {
 			
 		// entities
 			s.update();
-			
+		
+		// items
+			if(isPlayerEatApple()) {
+				setAppleANewPos();
+				s.lenght++;
+			}
 	}
 	
 	@Override
@@ -68,6 +81,10 @@ public class world extends state {
 			
 		// entities
 			s.render(g);
+	}
+	
+	public apple getApple() {
+		return a;
 	}
 	
 }

@@ -10,7 +10,6 @@ public class keymanager implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		keys[e.getKeyCode()] = true;
-
 	}
 
 	@Override

@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 public class frame extends JFrame {
 
-	public gamepanel panel = new gamepanel();
+	public static gamepanel panel = new gamepanel();
 	
 	frame(){
 		// setting characteristics of frame

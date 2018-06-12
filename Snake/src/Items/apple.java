@@ -1,7 +1,9 @@
 package Items;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 
+import Display.frame;
 import TEXTURES.TEXTURES;
 import World.boxes;
 
@@ -24,6 +26,10 @@ public class apple {
 	
 	public void render(Graphics2D g) {
 		g.drawImage(TEXTURES.apple, x, y, size, size, null);
+	}
+	
+	public Rectangle getBox() {
+		return new Rectangle(x, y, size, size);
 	}
 
 	public int getX() {
