@@ -49,6 +49,8 @@ public class texturebox {
 				}
 			}
 			
+
+			
 		// create texturebox
 			BufferedImage box = new BufferedImage(width, height, Image.SCALE_DEFAULT);
 			Graphics2D g = (Graphics2D) box.getGraphics();

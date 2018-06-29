@@ -1,10 +1,10 @@
 package States;
 
 import java.awt.Graphics2D;
-import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import Extension.tiles;
 import Tools.toolmanager;
 
 public abstract class state extends JPanel{
@@ -26,6 +26,7 @@ public abstract class state extends JPanel{
 		
 	// sandbox
 		public toolmanager toolmanager;
+		public tiles[][] tiles = new tiles[2000][2000];
 		
 		
 		

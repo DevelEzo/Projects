@@ -20,7 +20,6 @@ public class sandbox extends state {
 	// size
 		private int width, height;
 	// tiles
-		private tiles[][] tiles = new tiles[2000][2000];
 		private spritesheet spritesheet;
 		private builder b;
 	// managers
@@ -57,7 +56,7 @@ public class sandbox extends state {
 		
 		for(int x = 0; x < width / 32; x++) {
 			for(int y = 0; y < height / 32; y++) {
-				tiles[x][y] = new tiles(x, y, 32, 32, 0, spritesheet.getSpritesheetloader());	
+				tiles[x][y] = new tiles(x, y, 32, 32, 1, spritesheet.getSpritesheetloader());	
 			}
 		}
 		for(int x = 0; x < width / 32; x++) {
@@ -72,8 +71,24 @@ public class sandbox extends state {
 
 	@Override
 	public void render(Graphics2D g) {
+			
 		// background 
 			g.fillRect(x, y, width, height);
+	
+		// tiles
+			for(int x = 0; x < width / 32; x++) {
+				for(int y = 0; y < height / 32; y++) {
+					tiles[x][y].render(g);
+				
+				}
+			}
+			
+		// tools 
+			if(m.x <= width && m.x >= 0 
+					&& m.y <= height && m.y >= 0) {
+				toolmanager.render(g, spritesheet.getTexturebox().getCurrentTile());
+			}
+			
 			for(int ypos = 0; ypos <= height / 32; ypos++) {
 				g.setColor(Color.red);
 				g.drawLine(x, ypos * 32 + y, width + x, ypos * 32 + y);
@@ -82,16 +97,11 @@ public class sandbox extends state {
 				g.setColor(Color.red);
 				g.drawLine(xpos * 32 + x, y, xpos * 32 + x, height + y);
 			}
-		// tools 
-			if(m.x <= width && m.x >= 0 
-					&& m.y <= height && m.y >= 0) {
-				toolmanager.render(g, spritesheet.getTexturebox().getCurrentTile());
-			}
 	}
 
 	@Override
 	public void update() {
-		System.out.println(m.x);
+		toolmanager.update();
 	}
 
 	public int getX() {

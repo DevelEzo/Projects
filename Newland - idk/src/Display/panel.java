@@ -46,6 +46,8 @@ public class panel extends JLabel {
 			for (int i = 0; i < manager.states.size(); i++) {
 				add(manager.states.get(i));
 			}
+			
+			
 
 	}
 
