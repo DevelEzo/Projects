@@ -4,9 +4,12 @@ import java.awt.image.BufferedImage;
 
 public class spritesheetloader {
 	
-	private BufferedImage spritesheet;
-	private int cols;
-	private int width, height;
+	// texture
+		private BufferedImage spritesheet;
+	// position
+		private int cols;
+	// size
+		private int width, height;
 	
 	public spritesheetloader(BufferedImage spritesheet, int cols, int width, int height) {
 		this.spritesheet = spritesheet;
@@ -18,11 +21,11 @@ public class spritesheetloader {
 	public BufferedImage getTexture(int id) {
 		
 		// get the row & col
-		int x = (id % cols) * width;
-		int y = (id / cols) * height;
+			int x = (id % cols) * width;
+			int y = (id / cols) * height;
 		
 		// get right part of spritesheet 
-		return spritesheet.getSubimage(x, y, width, height);
+			return spritesheet.getSubimage(x, y, width, height);
 		
 	}
 	

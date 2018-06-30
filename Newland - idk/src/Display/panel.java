@@ -27,12 +27,15 @@ import Texture.TEXTURES;
 
 public class panel extends JLabel {
 
+	// managers
+		private mousemanager m = new mousemanager();
+	
 	// guis
 		public menu menu = new menu();
 		public toolbar toolbar = new toolbar(-120 / 2, frame.HEIGHT / 2 - 400, 120, 300);
 		public manager manager = new manager();
 		public spritesheet spritesheet = new spritesheet(0, 0, frame.WIDTH, frame.HEIGHT,
-			new spritesheetloader(TEXTURES.testspritesheet, 11, 32, 32));
+			new spritesheetloader(TEXTURES.testspritesheet, 11, 32, 32), m);
 
 	public panel() {
 
@@ -51,6 +54,8 @@ public class panel extends JLabel {
 			setFocusable(true);
 			requestFocus();
 			addKeyListener(new keymanager());
+			addMouseListener(m);
+			addMouseMotionListener(m);
 			
 
 	}

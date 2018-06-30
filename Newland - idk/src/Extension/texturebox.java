@@ -21,13 +21,16 @@ public class texturebox {
 		private tiles slots[][];
 		private BufferedImage texturebox;
 		private tiles currentTile;
+	// managers
+		private mousemanager m;
 
-	public texturebox(int x, int y, int width, int height, spritesheetloader spritesheet) {
+	public texturebox(int x, int y, int width, int height, spritesheetloader spritesheet, mousemanager m) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
 		this.spritesheet = spritesheet;
+		this.m = m;
 		
 		// create texturebox
 			texturebox = createTexturebox();
@@ -43,7 +46,7 @@ public class texturebox {
 
 			for (int yrow = 0; yrow < spritesheet.getCount() / spritesheet.getCols(); yrow++) {
 				for (int xrow = 0; xrow < spritesheet.getCols(); xrow++) {
-					slots[xrow][yrow] = new tiles(xrow, yrow, 64, 64, id, spritesheet);
+					slots[xrow][yrow] = new tiles(xrow, yrow, 64, 64, id, spritesheet, m);
 					
 					id++;
 				}
@@ -70,32 +73,37 @@ public class texturebox {
 	public void update() {
 		
 		// all slots
-		for (int yrow = 0; yrow < spritesheet.getCount() / spritesheet.getCols(); yrow++) {
-			for (int xrow = 0; xrow < spritesheet.getCols(); xrow++) {
-				if(slots[xrow][yrow].update()) currentTile = slots[xrow][yrow];
+			if(isMode()) {
+				for (int yrow = 0; yrow < spritesheet.getCount() / spritesheet.getCols(); yrow++) {
+					for (int xrow = 0; xrow < spritesheet.getCols(); xrow++) {
+						if(slots[xrow][yrow].update()) currentTile = slots[xrow][yrow];
+					}
+		
+				}
+				
 			}
-
-		}
 
 	}
 
 	public void render(Graphics2D g) {
 		
 		// texturebox
-		g.drawImage(texturebox, frame.WIDTH - width, y, width, height, null);
+			if(isMode()) {
+				g.drawImage(texturebox, frame.WIDTH - width, y, width, height, null);
+			}
 
 	}
 	
 	// mode
-	protected boolean mode = false;
+		protected boolean mode = false;
 	
-	public boolean isMode() {
-		return mode;
-	}
+		public boolean isMode() {
+			return mode;
+		}
 	
-	public void setMode(boolean b) {
-		mode = b;
-	}
+		public void setMode(boolean b) {
+			mode = b;
+		}
 	
 	
 	public tiles[][] getTiles(){

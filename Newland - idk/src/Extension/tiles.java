@@ -17,9 +17,11 @@ public class tiles {
 		private int id;
 	// spritesheet
 		private spritesheetloader spritesheet;
+	// managers
+		private mousemanager m;
 	
 	
-	public tiles(int x, int y, int width, int height, int id, spritesheetloader spritesheet) {
+	public tiles(int x, int y, int width, int height, int id, spritesheetloader spritesheet, mousemanager m) {
 		super();
 		this.x = x;
 		this.y = y;
@@ -27,6 +29,7 @@ public class tiles {
 		this.height = height;
 		this.id = id;
 		this.spritesheet = spritesheet;
+		this.m = m;
 	}
 	
 	public Rectangle getBox() {
@@ -35,11 +38,13 @@ public class tiles {
 	
 	public boolean update() {
 		
-		//if(mousemanager.getBox().intersects(getBox()) && mousemanager.isClicked) {
-		///	return true;
-		//}
+		if(m.getBox().intersects(getBox()) && m.isClicked) {
+			return true;
+		}
 		return false;
 	}
+	
+	
 	
 	public void render(Graphics2D g) {
 		// slot

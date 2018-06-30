@@ -20,7 +20,7 @@ public abstract class state extends JPanel{
 			return mode;
 		}
 		
-		public void setVisible(boolean b) {
+		public void setMode(boolean b) {
 			mode = b;
 		}
 		

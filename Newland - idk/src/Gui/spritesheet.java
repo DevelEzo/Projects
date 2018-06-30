@@ -17,6 +17,7 @@ import Display.panel;
 import Extension.texturebox;
 import Loader.spritesheetloader;
 import Manager.keymanager;
+import Manager.mousemanager;
 import States.sandbox;
 
 public class spritesheet extends JPanel {
@@ -28,16 +29,21 @@ public class spritesheet extends JPanel {
 	// texturebox
 		spritesheetloader spritesheet;
 		texturebox texturebox;
+	// managers
+		private mousemanager m;
+	// mode 
+		private boolean mode = false;
 
-	public spritesheet(int x, int y, int width, int height, spritesheetloader spritesheet) {
+	public spritesheet(int x, int y, int width, int height, spritesheetloader spritesheet, mousemanager m) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
 		this.spritesheet = spritesheet;
+		this.m = m;
 		
 		// create texturebox
-			texturebox = new texturebox(0, 20, width, height, spritesheet);
+			texturebox = new texturebox(0, 20, width, height, spritesheet, m);
 
 		// adjust panel
 			setMinimumSize(new Dimension(width, height));
@@ -51,30 +57,39 @@ public class spritesheet extends JPanel {
 				texturebox.update();
 			}
 		// check used keys
+			// TODO Verschieben
 			if (keymanager.keys[KeyEvent.VK_CONTROL]) {
 				// set visible of guis off
-					frame.panel.spritesheet.setVisible(false);
-					frame.panel.toolbar.setVisible(false);
+					frame.panel.spritesheet.setMode(true);
+					frame.panel.toolbar.setMode(false);
 					texturebox.setMode(true);
 					for (int i = 0; i < frame.panel.manager.states.size(); i++) {
-						frame.panel.manager.states.get(frame.panel.manager.state).setVisible(false);
+						frame.panel.manager.states.get(frame.panel.manager.state).setMode(false);
 					}
 		} else {
 			// set visible of guis on
-				frame.panel.spritesheet.setVisible(false);
-				frame.panel.toolbar.setVisible(true);
+				frame.panel.spritesheet.setMode(false);
+				frame.panel.toolbar.setMode(true);
 				texturebox.setMode(false);
 				for (int i = 0; i < frame.panel.manager.states.size(); i++) {
-					frame.panel.manager.states.get(frame.panel.manager.state).setVisible(true);
+					frame.panel.manager.states.get(frame.panel.manager.state).setMode(true);
 				}
 		}
 	}
 
 	public void render(Graphics2D g) {
 		// texturebox
-			if(frame.panel.spritesheet.isVisible()) {
+			if(isMode()) {
 				texturebox.render(g);
 			}
+	}
+	
+	public boolean isMode() {
+		return mode;
+	}
+	
+	public void setMode(boolean b) {
+		mode = b;
 	}
 	
 	public texturebox getTexturebox() {

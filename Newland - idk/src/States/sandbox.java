@@ -24,6 +24,8 @@ public class sandbox extends state {
 		private builder b;
 	// managers
 		private mousemanager m;
+	// mode
+		private boolean mode = false;
 
 	public sandbox(int x, int y, int width, int height, spritesheet spritesheet) {
 		this.x = x;
@@ -56,7 +58,7 @@ public class sandbox extends state {
 		
 		for(int x = 0; x < width / 32; x++) {
 			for(int y = 0; y < height / 32; y++) {
-				tiles[x][y] = new tiles(x, y, 32, 32, -1, spritesheet.getSpritesheetloader());	
+				tiles[x][y] = new tiles(x, y, 32, 32, -1, spritesheet.getSpritesheetloader(), m);	
 			}
 		}
 		for(int x = 0; x < width / 32; x++) {
@@ -72,6 +74,7 @@ public class sandbox extends state {
 	@Override
 	public void render(Graphics2D g) {
 			
+		if(isMode()) {
 		// background 
 			g.fillRect(x, y, width, height);
 	
@@ -99,11 +102,23 @@ public class sandbox extends state {
 				g.setColor(Color.red);
 				g.drawLine(xpos * 32 + x, y, xpos * 32 + x, height + y);
 			}
+			
+		}
 	}
 
 	@Override
 	public void update() {
-		toolmanager.update();
+		if(isMode()) {
+			toolmanager.update();
+		}
+	}
+	
+	public boolean isMode() {
+		return mode;
+	}
+	
+	public void setMode(boolean b) {
+		mode = b;
 	}
 
 	public int getX() {
