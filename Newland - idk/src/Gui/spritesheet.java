@@ -53,7 +53,7 @@ public class spritesheet extends JPanel {
 		// check used keys
 			if (keymanager.keys[KeyEvent.VK_CONTROL]) {
 				// set visible of guis off
-					frame.panel.spritesheet.setVisible(true);
+					frame.panel.spritesheet.setVisible(false);
 					frame.panel.toolbar.setVisible(false);
 					texturebox.setMode(true);
 					for (int i = 0; i < frame.panel.manager.states.size(); i++) {

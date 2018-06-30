@@ -47,6 +47,10 @@ public class panel extends JLabel {
 				add(manager.states.get(i));
 			}
 			
+		// add listener
+			setFocusable(true);
+			requestFocus();
+			addKeyListener(new keymanager());
 			
 
 	}

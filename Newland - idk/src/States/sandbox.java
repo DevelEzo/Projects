@@ -49,14 +49,14 @@ public class sandbox extends state {
 			
 		// toolmanager
 			toolmanager = new toolmanager();
-			toolmanager.tools.add(new builder(spritesheet, tiles, 32, m, TEXTURES.tools.getTexture(1))); // tool 1
+			toolmanager.tools.add(new builder(spritesheet, tiles, 32, m, TEXTURES.tools.getTexture(1), width, height)); // tool 1
 	}
 	
 	private void createSandbox() {
 		
 		for(int x = 0; x < width / 32; x++) {
 			for(int y = 0; y < height / 32; y++) {
-				tiles[x][y] = new tiles(x, y, 32, 32, 1, spritesheet.getSpritesheetloader());	
+				tiles[x][y] = new tiles(x, y, 32, 32, -1, spritesheet.getSpritesheetloader());	
 			}
 		}
 		for(int x = 0; x < width / 32; x++) {
@@ -78,7 +78,9 @@ public class sandbox extends state {
 		// tiles
 			for(int x = 0; x < width / 32; x++) {
 				for(int y = 0; y < height / 32; y++) {
-					tiles[x][y].render(g);
+					if(tiles[x][y].getId() >= 0) {
+						tiles[x][y].render(g);
+					}
 				
 				}
 			}

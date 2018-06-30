@@ -18,27 +18,32 @@ public class builder extends tool{
 		private tiles ct;
 	// managers
 		mousemanager m;
+	// size
+		private int width, height;
 		
-	public builder(spritesheet spritesheet, tiles[][] tiles, int size, mousemanager m, BufferedImage texture) {
+	public builder(spritesheet spritesheet, tiles[][] tiles, int size, mousemanager m, BufferedImage texture, int width, int height) {
 		super(texture);
 		this.s = spritesheet;
 		this.tiles = tiles;
 		this.size = size;
 		this.m = m;
+		this.width = width;
+		this.height = height;
 	}	
 
 	public void update() {
 		if(m.isClicked) {
 			setBlock(ct);
-			System.out.println(true);
 		}
 
 	}
 	
 	public void setBlock(tiles ct) {
 		
-		frame.panel.manager.states.get(0).tiles[m.x / size][m.y / size].setId(ct.getId());
-		
+		if(m.x <= width && m.x >= 0 
+				&& m.y <= height && m.y >= 0) {
+			frame.panel.manager.states.get(0).tiles[m.x / size][m.y / size].setId(ct.getId());
+		}
 	}
 
 	@Override
