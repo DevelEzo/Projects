@@ -52,6 +52,9 @@ public class texturebox {
 				}
 			}
 			
+			System.out.println(spritesheet.getCols());
+			System.out.println(spritesheet.getCount()/spritesheet.getCols());
+			
 
 			
 		// create texturebox

@@ -38,12 +38,13 @@ public class sandbox extends state {
 			setSize(width, height);
 			setLocation(x, y);
 			setBackground(new Color(0, 0, 0, 0));
+			setVisible(true);
 		
 		// add listeners
 			m = new mousemanager();
-			setFocusable(true);
+			setFocusable(false);
 			requestFocus();
-			addMouseListener(m);
+	 		addMouseListener(m);
 			addMouseMotionListener(m);
 			
 		// sandbox
@@ -51,20 +52,20 @@ public class sandbox extends state {
 			
 		// toolmanager
 			toolmanager = new toolmanager();
-			toolmanager.tools.add(new builder(spritesheet, tiles, 32, m, TEXTURES.tools.getTexture(1), width, height)); // tool 1
+			toolmanager.tools.add(new builder(spritesheet, tiles, 64, m, TEXTURES.tools.getTexture(1), width, height)); // tool 1
 	}
 	
 	private void createSandbox() {
 		
-		for(int x = 0; x < width / 32; x++) {
-			for(int y = 0; y < height / 32; y++) {
-				tiles[x][y] = new tiles(x, y, 32, 32, -1, spritesheet.getSpritesheetloader(), m);	
+		for(int x = 0; x < width / 64; x++) {
+			for(int y = 0; y < height / 64; y++) {
+				tiles[x][y] = new tiles(x, y, 64, 64, -1, spritesheet.getSpritesheetloader(), m);	
 			}
 		}
-		for(int x = 0; x < width / 32; x++) {
-			for(int y = 0; y < height / 32; y++) {
-				tiles[x][y].setX(tiles[x][y].getX() + getX() / 32);
-				tiles[x][y].setY(tiles[x][y].getY() + getY() / 32);
+		for(int x = 0; x < width / 64; x++) {
+			for(int y = 0; y < height / 64; y++) {
+				tiles[x][y].setX(tiles[x][y].getX() + getX() / 64);
+				tiles[x][y].setY(tiles[x][y].getY() + getY() / 64);
 			
 			}
 		}
@@ -74,13 +75,13 @@ public class sandbox extends state {
 	@Override
 	public void render(Graphics2D g) {
 			
-		if(isMode()) {
+		if(isVisible()) {
 		// background 
 			g.fillRect(x, y, width, height);
 	
 		// tiles
-			for(int x = 0; x < width / 32; x++) {
-				for(int y = 0; y < height / 32; y++) {
+			for(int x = 0; x < width / 64; x++) {
+				for(int y = 0; y < height / 64; y++) {
 					if(tiles[x][y].getId() >= 0) {
 						tiles[x][y].render(g);
 					}
@@ -94,13 +95,13 @@ public class sandbox extends state {
 				toolmanager.render(g, spritesheet.getTexturebox().getCurrentTile());
 			}
 			
-			for(int ypos = 0; ypos <= height / 32; ypos++) {
+			for(int ypos = 0; ypos <= height / 64; ypos++) {
 				g.setColor(Color.red);
-				g.drawLine(x, ypos * 32 + y, width + x, ypos * 32 + y);
+				g.drawLine(x, ypos * 64 + y, width + x, ypos * 64 + y);
 			}
-			for(int xpos = 0; xpos <= width / 32; xpos++) {
+			for(int xpos = 0; xpos <= width / 64; xpos++) {
 				g.setColor(Color.red);
-				g.drawLine(xpos * 32 + x, y, xpos * 32 + x, height + y);
+				g.drawLine(xpos * 64 + x, y, xpos * 64 + x, height + y);
 			}
 			
 		}

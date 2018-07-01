@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 public class keymanager implements KeyListener {
 
 	// keys
-		public static boolean keys[] = new boolean[256];
+		public static boolean keys[] = new boolean[1000];
 	
 	@Override
 	public void keyPressed(KeyEvent e) {

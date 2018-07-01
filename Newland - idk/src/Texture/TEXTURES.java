@@ -8,7 +8,7 @@ import Loader.spritesheetloader;
 public class TEXTURES {
 	
 	// spritesheets (TEST)
-		public static BufferedImage testspritesheet = imageloader.load("spritesheettest.png");
+		public static BufferedImage testspritesheet = imageloader.load("mapPack_spritesheet.png");
 	// tools
 		public static BufferedImage toolssheet = imageloader.load("toolssheet.png");
 		

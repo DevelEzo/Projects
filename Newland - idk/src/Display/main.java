@@ -31,7 +31,7 @@ public class main implements Runnable {
 				}
 				render();
 				currentFps = System.currentTimeMillis();
-				System.out.println(maxLoops + " : " + (currentFps - startFps));
+				// System.out.println(maxLoops + " : " + (currentFps - startFps));
 				if (currentFps - startFps <= maxLoops) {
 					try {
 						Thread.sleep(maxLoops - (currentFps - startFps));

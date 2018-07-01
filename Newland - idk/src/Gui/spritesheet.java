@@ -61,18 +61,22 @@ public class spritesheet extends JPanel {
 			if (keymanager.keys[KeyEvent.VK_CONTROL]) {
 				// set visible of guis off
 					frame.panel.spritesheet.setMode(true);
+					frame.panel.spritesheet.setVisible(true);
 					frame.panel.toolbar.setMode(false);
 					texturebox.setMode(true);
 					for (int i = 0; i < frame.panel.manager.states.size(); i++) {
 						frame.panel.manager.states.get(frame.panel.manager.state).setMode(false);
+						frame.panel.manager.states.get(frame.panel.manager.state).setVisible(false);
 					}
 		} else {
 			// set visible of guis on
 				frame.panel.spritesheet.setMode(false);
+				frame.panel.spritesheet.setVisible(false);
 				frame.panel.toolbar.setMode(true);
 				texturebox.setMode(false);
 				for (int i = 0; i < frame.panel.manager.states.size(); i++) {
 					frame.panel.manager.states.get(frame.panel.manager.state).setMode(true);
+					frame.panel.manager.states.get(frame.panel.manager.state).setVisible(true);
 				}
 		}
 	}

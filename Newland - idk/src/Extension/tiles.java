@@ -2,6 +2,7 @@ package Extension;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 import Loader.spritesheetloader;
 import Manager.mousemanager;
@@ -14,7 +15,7 @@ public class tiles {
 	// size
 		private int width, height;
 	// id 
-		private int id;
+		private ArrayList<Integer> ids = new ArrayList<Integer>();
 	// spritesheet
 		private spritesheetloader spritesheet;
 	// managers
@@ -27,7 +28,7 @@ public class tiles {
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		this.id = id;
+		ids.add(id);
 		this.spritesheet = spritesheet;
 		this.m = m;
 	}
@@ -38,7 +39,7 @@ public class tiles {
 	
 	public boolean update() {
 		
-		if(m.getBox().intersects(getBox()) && m.isClicked) {
+		if(m.getBox().intersects(getBox()) && m.isClicked[0]) {
 			return true;
 		}
 		return false;
@@ -48,7 +49,13 @@ public class tiles {
 	
 	public void render(Graphics2D g) {
 		// slot
-			g.drawImage(spritesheet.getTexture(id), x * width, y * height, width, height, null);
+			for(int id = 0; id <= ids.size() - 1; id++) {
+				if(ids.get(id) >= 0) {
+				g.drawImage(spritesheet.getTexture(ids.get(id)), x * width, y * height, width, height, null);
+			}
+				
+		}
+		
 	}
 
 	public int getX() {
@@ -84,11 +91,20 @@ public class tiles {
 	}
 
 	public int getId() {
-		return id;
+		return ids.get(ids.size() - 1);
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		if(getId() != id) {
+			ids.add(id);
+		}
+	}
+	
+	public void removeID() {
+		if(ids.size() > 1) {
+			ids.remove(ids.size() - 1);
+		}
+		
 	}
 
 	public spritesheetloader getSpritesheet() {

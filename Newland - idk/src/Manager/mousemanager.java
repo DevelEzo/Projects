@@ -14,7 +14,7 @@ public class mousemanager implements MouseListener, MouseMotionListener {
 	// position
 		public int x, y;
 	// mode
-		public boolean isClicked = false;
+		public boolean[] isClicked = new boolean[2];
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -31,13 +31,21 @@ public class mousemanager implements MouseListener, MouseMotionListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// mode 
-			isClicked = true;
+			if(e.getButton() == 1) {
+				isClicked[0] = true;
+			} else if(e.getButton() == 3) {
+				isClicked[1] = true;
+			}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// mode
-			isClicked = false;
+			if(e.getButton() == 1) {
+				isClicked[0] = false;
+			} else if(e.getButton() == 3) {
+				isClicked[1] = false;
+			}
 	}
 
 	@Override

@@ -32,12 +32,24 @@ public class builder extends tool{
 	}	
 
 	public void update() {
-		if(m.isClicked) {
+		if(m.isClicked[0]) {
 			setBlock(ct);
+		} else if(m.isClicked[1]) {
+			removeBlock();
 		}
 
 	}
 	
+	public void removeBlock() {
+		if(m.x <= width && m.x >= 0 
+				&& m.y <= height && m.y >= 0) {
+			frame.panel.manager.states.get(0).tiles[m.x / size][m.y / size].removeID();
+		}
+		
+		m.isClicked[1] = false;
+		
+	}
+
 	public void setBlock(tiles ct) {
 		
 		if(m.x <= width && m.x >= 0 
